@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDzZvQ1Uxp_buM4otrSUOuHO3n31Gybk-g",
@@ -14,8 +14,9 @@ const app = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);
-
-export const firestore = getFirestore(app);
+export const db = getFirestore(app);
+// export const col = collection(db);
+// export const addDocument = addDoc(db);
 
 export const signInWitchGoogle = () => {
   signInWithPopup(auth, provider)
