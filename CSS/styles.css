@@ -20,11 +20,35 @@ body {
 }
 
 button {
-  padding: 0.8rem 1rem;
+  padding: 1rem 1.5rem;
   border-radius: 200px;
   border: none;
   font-weight: 500;
   cursor: pointer;
+}
+
+i {
+  font-size: 16px;
+}
+
+input {
+  padding: 1rem 1.3rem;
+  border-radius: 200px;
+  font-weight: 400;
+  background-color: transparent;
+  border: 1px solid var(--color-4);
+  color: var(--color-4);
+}
+
+input::placeholder {
+  color: var(--color-4);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 button:hover {
@@ -50,4 +74,20 @@ button:hover {
 .floating-btn {
   position: absolute;
   bottom: 50px;
+}
+
+/* Home */
+#input-container {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#input-container div {
+  display: flex;
+  gap: 10px;
+  width: 100%;
 }
