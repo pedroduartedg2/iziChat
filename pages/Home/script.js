@@ -1,5 +1,5 @@
 // import { logout, verifyLogin, auth, col, addDocument, db } from "../../firebase-init.js";
-import { db, verifyLogin, auth } from "../../firebase-init.js";
+import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
 import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
