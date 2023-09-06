@@ -38,6 +38,7 @@ input {
   background-color: transparent;
   border: 1px solid var(--color-4);
   color: var(--color-4);
+  width: 100%;
 }
 
 input::placeholder {
@@ -58,6 +59,12 @@ button:hover {
 .primary-btn {
   background-color: var(--color-2);
   color: var(--color-1);
+}
+
+.secodary-btn {
+  background-color: transparent;
+  color: var(--color-4);
+  border: 1px solid var(--color-4);
 }
 
 /* Login */
@@ -90,4 +97,5 @@ button:hover {
   display: flex;
   gap: 10px;
   width: 100%;
+  justify-content: space-between;
 }
