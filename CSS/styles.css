@@ -19,8 +19,8 @@
 
 body {
   background-color: var(--color-1);
-  padding-top: 70px;
-  margin-bottom: 82px;
+  /* padding-top: 70px; */
+  /* margin-bottom: 82px; */
 
   /* margin-bottom: 70px; */
   overflow: hidden;
@@ -59,7 +59,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   background: var(--color-1);
@@ -133,7 +133,7 @@ button:hover {
 
 /* Home */
 #input-container {
-  position: fixed;
+  position: sticky;
   width: 100%;
   bottom: 0;
   display: flex;
