@@ -31,7 +31,13 @@ const sendMessage = async (message) => {
         photoURL: findUser().photoURL,
         uid: findUser().uid,
       },
-    }).then(() => createMessages());
+    }).then(() => {
+      createMessages().then(() => {
+        var objDiv = document.getElementById("messages-container");
+        objDiv.scrollTop = objDiv.scrollHeight;
+      });
+      setTimeout(() => {}, 400);
+    });
     // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -45,7 +51,6 @@ const findUser = () => {
 const findMessages = async () => {
   const messagesDb = collection(db, "messages");
   const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
-  console.log("q: ", q);
   const querySnapshot = await getDocs(q);
 
   // const querySnapshot = await getDocs(collection(db, "messages"));
@@ -58,7 +63,6 @@ const findMessages = async () => {
 
 const createMessages = async () => {
   let messages = await findMessages();
-  console.log("messages: ", messages);
   let allMessages = "";
   messages.forEach((message) => {
     let messageBoxOthers = "";
@@ -75,14 +79,24 @@ const createMessages = async () => {
     </div>`;
     allMessages += HTML;
   });
-  console.log("allMessages: ", allMessages);
   document.getElementById("messages-container").innerHTML = allMessages;
 };
 
 let alturaBoxInput = document.getElementById("input-container").clientHeight;
 let alturaHeader = document.querySelector("header").clientHeight;
-console.log(alturaBoxInput);
-console.log(alturaHeader);
+
 document.getElementById("messages-container").style.height = "calc(100vh - " + (Number(alturaBoxInput) + Number(alturaHeader) + 8) + "px)";
-console.log("calc(100vh - " + Number(alturaBoxInput) + Number(alturaHeader) + "px");
-createMessages();
+
+document.addEventListener(
+  "keypress",
+  function (e) {
+    if (e.which == 13) {
+      document.getElementById("send-btn").click();
+    }
+  },
+  false
+);
+createMessages().then(() => {
+  var objDiv = document.getElementById("messages-container");
+  objDiv.scrollTop = objDiv.scrollHeight;
+});
