@@ -123,7 +123,7 @@ button:hover {
   flex-direction: column;
   gap: 10px;
   overflow: scroll;
-  height: 100%;
+  height: calc(100vh - 150px);
   /* position: absolute; */
 }
 
