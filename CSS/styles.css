@@ -123,8 +123,8 @@ button:hover {
   flex-direction: column;
   gap: 10px;
   overflow: scroll;
-  height: 100vh;
-  /* position: fixed; */
+  height: 100%;
+  /* position: absolute; */
 }
 
 .message-box {
