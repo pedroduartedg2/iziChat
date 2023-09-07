@@ -20,7 +20,7 @@
 body {
   background-color: var(--color-1);
   padding-top: 70px;
-  margin-bottom: 70px;
+  /* margin-bottom: 70px; */
   overflow: hidden;
 }
 
@@ -161,7 +161,7 @@ button:hover {
   overflow: scroll;
   height: calc(100vh - 150px);
   overflow-x: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 82px;
   /* position: absolute; */
 }
 
