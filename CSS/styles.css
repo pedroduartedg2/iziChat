@@ -54,6 +54,9 @@ header {
   justify-content: space-between;
   padding: 1rem;
   position: fixed;
+  z-index: 99;
+  width: 100%;
+  background: var(--color-1);
 }
 
 header img {
