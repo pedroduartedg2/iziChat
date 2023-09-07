@@ -1,6 +1,6 @@
 // import { logout, verifyLogin, auth, col, addDocument, db } from "../../firebase-init.js";
 import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
-import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
 
@@ -31,7 +31,7 @@ const sendMessage = async (message) => {
         photoURL: findUser().photoURL,
         uid: findUser().uid,
       },
-    }).then(() => findMessages());
+    }).then(() => createMessages());
     // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -43,13 +43,40 @@ const findUser = () => {
 };
 
 const findMessages = async () => {
-  const querySnapshot = await getDocs(collection(db, "messages"));
+  const messagesDb = collection(db, "messages");
+  const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
+  console.log("q: ", q);
+  const querySnapshot = await getDocs(q);
+
+  // const querySnapshot = await getDocs(collection(db, "messages"));
   let messages = [];
   querySnapshot.forEach((doc) => {
     messages.push(doc.data());
   });
-  console.log("messages: ", messages);
   return messages;
 };
 
-// findMessages();
+const createMessages = async () => {
+  let messages = await findMessages();
+  console.log("messages: ", messages);
+  let allMessages = "";
+  messages.forEach((message) => {
+    let messageBoxOthers = "";
+    let messageOthers = "";
+    if (message.user.uid != findUser().uid) {
+      messageBoxOthers = "message-box-others";
+      messageOthers = "message-others";
+    }
+    let HTML = `<div class="message-box ${messageBoxOthers}">
+      <div class="message ${messageOthers}">
+        <p>${message.message}</p>
+        <img src="${message.user.photoURL}" alt="" />
+      </div>
+    </div>`;
+    allMessages += HTML;
+  });
+  console.log("allMessages: ", allMessages);
+  document.getElementById("messages-container").innerHTML = allMessages;
+};
+
+createMessages();
