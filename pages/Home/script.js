@@ -82,10 +82,10 @@ const createMessages = async () => {
   document.getElementById("messages-container").innerHTML = allMessages;
 };
 
-let alturaBoxInput = document.getElementById("input-container").clientHeight;
-let alturaHeader = document.querySelector("header").clientHeight;
+// let alturaBoxInput = document.getElementById("input-container").clientHeight;
+// let alturaHeader = document.querySelector("header").clientHeight;
 
-document.getElementById("messages-container").style.height = "calc(100vh - " + (Number(alturaBoxInput) + Number(alturaHeader) + 8) + "px)";
+// document.getElementById("messages-container").style.height = "calc(100vh - " + (Number(alturaBoxInput) + Number(alturaHeader) + 8) + "px)";
 
 document.addEventListener(
   "keypress",
@@ -96,6 +96,7 @@ document.addEventListener(
   },
   false
 );
+
 createMessages().then(() => {
   var objDiv = document.getElementById("messages-container");
   objDiv.scrollTop = objDiv.scrollHeight;
