@@ -99,5 +99,6 @@ document.addEventListener(
 
 createMessages().then(() => {
   var objDiv = document.getElementById("messages-container");
+  console.log(objDiv.scrollHeight);
   objDiv.scrollTop = objDiv.scrollHeight;
 });
