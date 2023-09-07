@@ -31,13 +31,14 @@ const sendMessage = async (message) => {
         photoURL: findUser().photoURL,
         uid: findUser().uid,
       },
-    }).then(() => {
-      createMessages().then(() => {
-        var objDiv = document.getElementById("messages-container");
-        objDiv.scrollTop = objDiv.scrollHeight;
-      });
-      setTimeout(() => {}, 400);
     });
+    // .then(() => {
+    //   createMessages().then(() => {
+    //     var objDiv = document.getElementById("messages-container");
+    //     objDiv.scrollTop = objDiv.scrollHeight;
+    //   });
+    //   setTimeout(() => {}, 400);
+    // });
     // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -68,11 +69,18 @@ const createMessages = async (messages) => {
   messages.forEach((message) => {
     let messageBoxOthers = "";
     let messageOthers = "";
+    let name = "";
+    let alignName = "";
     if (message.user.uid != findUser().uid) {
       messageBoxOthers = "message-box-others";
       messageOthers = "message-others";
+      name = message.user.name;
+    } else {
+      alignName = "text-align: end";
     }
-    let HTML = `<div class="message-box ${messageBoxOthers}">
+    let HTML = `
+    <div class="name-message" style="${alignName}">${name}</div>
+    <div class="message-box ${messageBoxOthers}">
       <div class="message ${messageOthers}">
         <p>${message.message}</p>
         <img src="${message.user.photoURL}" alt="" />
@@ -128,5 +136,8 @@ const start = async () => {
     createMessages(messages).then(() => rollEnd());
   });
 };
+
+document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
+// document.getElementById("name-user").textContent = localStorage.getItem("name").split(" ")[0];
 
 start();

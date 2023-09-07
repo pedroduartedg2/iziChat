@@ -62,8 +62,34 @@ header {
   background: var(--color-1);
 }
 
+header div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#logout-btn {
+  color: var(--color-4);
+  background-color: var(--color-5);
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 200px;
+}
+
+#name-user {
+  color: var(--color-4);
+}
+
+#profile-pic {
+  width: 2.1rem;
+  border-radius: 200px;
+}
+
 header img {
-  width: 11rem;
+  width: 9rem;
 }
 
 button:hover {
@@ -121,7 +147,7 @@ button:hover {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   overflow: scroll;
   height: calc(100vh - 150px);
   /* position: absolute; */
@@ -165,5 +191,10 @@ button:hover {
 
 .message-others p {
   background-color: var(--color-5);
+  color: var(--color-4);
+}
+
+.name-message {
+  font-size: 0.7rem;
   color: var(--color-4);
 }
