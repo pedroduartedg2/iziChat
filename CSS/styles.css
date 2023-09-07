@@ -146,6 +146,10 @@ button:hover {
   justify-content: space-between;
 }
 
+#send-btn i {
+  font-size: 1.1rem;
+}
+
 /* Mensagem */
 #messages-container {
   padding: 1rem;
