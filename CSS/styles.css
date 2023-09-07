@@ -23,7 +23,7 @@ body {
   /* margin-bottom: 82px; */
 
   /* margin-bottom: 70px; */
-  overflow: auto;
+  overflow: hidden;
 }
 
 button {
