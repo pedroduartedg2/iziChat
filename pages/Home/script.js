@@ -23,11 +23,20 @@ document.getElementById("send-btn").addEventListener("click", () => {
   }
 });
 
+function getTimestampDataOntem() {
+  const dataOntem = new Date(); // Obtém a data atual
+  dataOntem.setDate(dataOntem.getDate() - 1); // Subtrai um dia
+
+  const timestamp = dataOntem.getTime(); // Obtém o timestamp em milissegundos
+
+  return timestamp;
+}
+
 const sendMessage = async (message) => {
   try {
     const docRef = await addDoc(collection(db, "messages"), {
       message: message,
-      created: new Date(Date.now()),
+      created: new Date(),
       user: {
         email: findUser().email,
         name: findUser().displayName,
@@ -65,6 +74,94 @@ const findMessages = async () => {
   return messages;
 };
 
+function isHoje(data) {
+  const dataAtual = new Date(); // Obtém a data atual
+  const diaAtual = dataAtual.getDate();
+  const mesAtual = dataAtual.getMonth() + 1; // Mês é base 0, então adicionamos 1
+  const anoAtual = dataAtual.getFullYear();
+
+  const diaData = data.getDate();
+  const mesData = data.getMonth() + 1; // Mês é base 0, então adicionamos 1
+  const anoData = data.getFullYear();
+
+  // Compara ano, mês e dia para determinar se a data é hoje
+  return diaData === diaAtual && mesData === mesAtual && anoData === anoAtual;
+}
+
+function isOntem(data) {
+  const dataOntem = new Date(); // Obtém a data atual
+  dataOntem.setDate(dataOntem.getDate() - 1); // Subtrai um dia para obter a data de ontem
+
+  // Compara ano, mês e dia para determinar se a data é igual à de ontem
+  return data.getDate() === dataOntem.getDate() && data.getMonth() === dataOntem.getMonth() && data.getFullYear() === dataOntem.getFullYear();
+}
+
+function isDataMenorQueOntem(data) {
+  const dataOntem = new Date(); // Obtém a data atual
+  dataOntem.setDate(dataOntem.getDate() - 1); // Subtrai um dia para obter a data de ontem
+
+  // Compara as datas usando o método getTime() que retorna o timestamp em milissegundos
+  return data.getTime() < dataOntem.getTime();
+}
+
+function estaDentroDeSeteDias(data) {
+  const dataAtual = new Date(); // Obtém a data atual
+  const limite = 7 * 24 * 60 * 60 * 1000; // 7 dias em milissegundos
+
+  // Calcula a diferença em milissegundos entre as duas datas
+  const diferenca = data - dataAtual;
+
+  // Verifica se a diferença está dentro do limite de 7 dias
+  return diferenca <= limite;
+}
+
+function obterNomeDoDiaDaSemana(data) {
+  const diaDaSemanaNumero = data.getDay(); // Obtém o número do dia da semana (0 a 6)
+
+  // Crie um objeto que mapeia os números do dia da semana para os nomes dos dias
+  const nomesDosDias = {
+    0: "Domingo",
+    1: "Segunda",
+    2: "Terça",
+    3: "Quarta",
+    4: "Quinta",
+    5: "Sexta",
+    6: "Sábado",
+  };
+
+  // Use o objeto para obter o nome do dia da semana
+  return nomesDosDias[diaDaSemanaNumero] || "Dia inválido";
+}
+
+const formatDate = (timestamp) => {
+  let agora = new Date();
+  let diferencaEmMilissegundos = Math.abs(new Date(timestamp.seconds * 1000) - agora);
+  let limiteEmMilissegundos = 1 * 60 * 1000; // 1 minuto
+  let time = new Date(timestamp.seconds * 1000);
+
+  if (diferencaEmMilissegundos <= limiteEmMilissegundos) {
+    return "agora";
+  } else {
+    let hora = time.getHours();
+    let minutos = time.getMinutes();
+    if (minutos < 10) minutos = "0" + minutos;
+    if (hora < 10) hora = "0" + hora;
+    if (isHoje(time)) {
+      return hora + ":" + minutos;
+    } else if (isOntem(time)) {
+      return "Ontem " + hora + ":" + minutos;
+    } else if (estaDentroDeSeteDias(time)) {
+      return obterNomeDoDiaDaSemana(time) + " " + hora + ":" + minutos;
+    } else if (isDataMenorQueOntem(time)) {
+      let dia = time.getDate();
+      let mes = time.getMonth() + 1;
+      if (dia < 10) dia = "0" + dia;
+      if (mes < 10) mes = "0" + mes;
+      return dia + "/" + mes + " " + hora + ":" + minutos;
+    }
+  }
+};
+
 const createMessages = async (messages) => {
   console.log("messages:::::", messages);
   // let messages = await findMessages();
@@ -84,8 +181,11 @@ const createMessages = async (messages) => {
     <div class="message-box ${messageBoxOthers}">
     <div class="message ${messageOthers}">
     <div>
-    ${divName}
-      <p>${message.message}</p>
+      ${divName}
+      <span class="message-text-box">
+        <p class="message-text">${message.message}</p>
+        <p class="time-message">${formatDate(message.created)}</p>
+      </span>
     </div>
         <img src="${message.user.photoURL}" alt="" />
       </div>
@@ -94,11 +194,6 @@ const createMessages = async (messages) => {
   });
   document.getElementById("messages-container").innerHTML = allMessages;
 };
-
-// let alturaBoxInput = document.getElementById("input-container").clientHeight;
-// let alturaHeader = document.querySelector("header").clientHeight;
-
-// document.getElementById("messages-container").style.height = "calc(100vh - " + (Number(alturaBoxInput) + Number(alturaHeader) + 8) + "px)";
 
 document.addEventListener(
   "keypress",
@@ -109,17 +204,6 @@ document.addEventListener(
   },
   false
 );
-
-// createMessages().then(() => {
-//   var objDiv = document.getElementById("messages-container");
-//   console.log(objDiv.scrollHeight);
-//   objDiv.scrollTop = objDiv.scrollHeight;
-// });
-
-// onSnapshot(doc(db, "messages", "messages"), (doc) => {
-//   console.log("doc: ", doc);
-//   console.log("Current data: ", doc.data());
-// });
 
 const rollEnd = () => {
   var objDiv = document.getElementById("messages-container");
@@ -145,7 +229,48 @@ const start = async () => {
   });
 };
 
+const divFlutuante = document.getElementById("div-flutuante");
+const messagesContainer = document.getElementById("messages-container");
+
+// Variável para controlar a exibição do botão
+let exibirBotao = false;
+
+messagesContainer.addEventListener("scroll", () => {
+  const scrollTop = messagesContainer.scrollTop;
+  const scrollHeight = messagesContainer.scrollHeight;
+  const clientHeight = messagesContainer.clientHeight;
+
+  // Calcular 10% da altura da div
+  const dezPorcento = (scrollHeight - clientHeight) * 0.9;
+
+  // Verifique se a rolagem é maior que 10% da altura da div para exibir o botão
+  if (scrollTop > dezPorcento) {
+    exibirBotao = true;
+  } else {
+    exibirBotao = false;
+  }
+
+  // Exiba ou oculte o botão com base na variável exibirBotao
+  if (exibirBotao) {
+    divFlutuante.classList.remove("active");
+  } else {
+    divFlutuante.classList.add("active");
+  }
+});
+
+divFlutuante.addEventListener("click", () => {
+  // Adicione o efeito suave ao rolar para o início da div "messages-container"
+  messagesContainer.style.scrollBehavior = "smooth";
+
+  // Role para o início da div "messages-container" quando a div flutuante é clicada
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  // Remova o efeito suave após a rolagem
+  setTimeout(() => {
+    messagesContainer.style.scrollBehavior = "auto";
+  }, 1000); // Ajuste o tempo conforme necessário
+});
+
 document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
-// document.getElementById("name-user").textContent = localStorage.getItem("name").split(" ")[0];
 
 start();

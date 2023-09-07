@@ -155,6 +155,8 @@ button:hover {
   gap: 10px;
   overflow: scroll;
   height: calc(100vh - 150px);
+  overflow-x: hidden;
+  margin-bottom: 12px;
   /* position: absolute; */
 }
 
@@ -201,6 +203,14 @@ button:hover {
   gap: 5px;
 }
 
+.message-text-box {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .message-others div {
   background-color: var(--color-5);
   color: var(--color-4);
@@ -209,6 +219,11 @@ button:hover {
 .name-message {
   font-size: 0.7rem;
   color: var(--color-3);
+}
+
+.time-message {
+  font-size: 0.6rem;
+  text-align: end;
 }
 
 /* Load */
@@ -239,4 +254,45 @@ button:hover {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Personaliza Scroll */
+*::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-1); /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-5); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid var(--color-1); /* creates padding around scroll thumb */
+}
+
+/* Flutuante rola para final */
+.div-flutuante {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  right: 1rem;
+  background-color: var(--color-1);
+  opacity: 80%;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.div-flutuante i {
+  font-size: 20px;
+}
+
+.div-flutuante.active {
+  display: block;
 }
