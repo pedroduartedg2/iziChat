@@ -119,8 +119,9 @@ button:hover {
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  height: calc(100vh - 85px);
+  height: 100vh;
   position: fixed;
+  padding-bottom: 90px;
 }
 
 .message-box {
