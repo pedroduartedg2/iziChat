@@ -92,10 +92,11 @@ button:hover {
 #input-container {
   position: absolute;
   width: 100%;
-  bottom: 20px;
+  /* bottom: 20px; */
   display: flex;
   justify-content: center;
   padding: 1rem;
+  background-color: var(--color-1);
 }
 
 #input-container div {
