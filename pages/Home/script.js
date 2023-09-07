@@ -4,7 +4,7 @@ import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc } f
 
 verifyLogin();
 
-document.getElementById("logout-btn").addEventListener("click", () => {
+document.getElementById("logout-btn-modal").addEventListener("click", () => {
   document.getElementById("boxLoader").style.display = "flex";
   logout().then(() => {
     document.getElementById("boxLoader").style.display = "none";
@@ -274,3 +274,33 @@ divFlutuante.addEventListener("click", () => {
 document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
 
 start();
+
+// Modal
+
+const openModalBtn = document.getElementById("logout-btn");
+const modal = document.getElementById("myModal");
+const cancelBtn = document.getElementById("cancel-btn");
+
+openModalBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+cancelBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// const arrayObjetos = [
+//   { chave: "valor1" },
+//   { chave: "valor2" },
+//   { chave: "valor1" },
+//   { chave: "valor3" },
+// ];
+
+// arrayObjetos.forEach((elemento, index, array) => {
+//   if (index < array.length - 1) {
+//     const proximoElemento = array[index + 1];
+//     if (elemento.chave === proximoElemento.chave) {
+//       console.log(`O elemento ${index + 1} possui a mesma chave que o próximo elemento.`);
+//     }
+//   }
+// });
