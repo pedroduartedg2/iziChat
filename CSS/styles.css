@@ -27,6 +27,7 @@ body {
 }
 main {
   margin-bottom: 82px;
+  height: 100vh;
 }
 
 button {
