@@ -17,45 +17,44 @@
     />
   </head>
   <body>
-    <header>
-      <img src="/src/Logo.svg" alt="" />
-      <div>
-        <img id="profile-pic" src="" alt="" />
-        <!-- <button id="logout-btn" class="secodary-btn">Sair</button> -->
-        <i id="logout-btn" class="fa-solid fa-right-from-bracket"></i>
-        <!-- <p id="name-user"></p> -->
-      </div>
-    </header>
+    <main>
+      <header>
+        <img src="/src/Logo.svg" alt="" />
+        <div>
+          <img id="profile-pic" src="" alt="" />
+          <!-- <button id="logout-btn" class="secodary-btn">Sair</button> -->
+          <i id="logout-btn" class="fa-solid fa-right-from-bracket"></i>
+          <!-- <p id="name-user"></p> -->
+        </div>
+      </header>
 
-    <div id="messages-container"></div>
+      <div id="messages-container"></div>
 
-    <div id="input-container">
-      <div>
-        <input id="input-message" type="text" placeholder="Escreva uma mensagem..." autofocus />
-        <button id="send-btn" class="primary-btn">
-          <i class="fa-solid fa-paper-plane"></i>
-        </button>
+      <footer id="input-container">
+        <div>
+          <input id="input-message" type="text" placeholder="Escreva uma mensagem..." autofocus />
+          <button id="send-btn" class="primary-btn">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </footer>
+    </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div>
+          <i id="logout-icon" class="fa-solid fa-right-from-bracket"></i>
+          <h2>Deseja sair?</h2>
+        </div>
+        <div id="box-btn-modal">
+          <button id="cancel-btn" class="modal-btn">Cancelar</button>
+          <button id="logout-btn-modal" class="modal-btn">Sair</button>
+        </div>
       </div>
     </div>
 
     <div id="boxLoader" class="boxLoader"><div class="loader"></div></div>
     <div class="div-flutuante" id="div-flutuante">
       <i class="fa-solid fa-caret-down"></i>
-    </div>
-
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <!-- <span class="close">&times;</span> -->
-        <div>
-          <i id="logout-icon" class="fa-solid fa-right-from-bracket"></i>
-          <h2>Deseja sair?</h2>
-        </div>
-        <!-- <p>Deseja sair?</p> -->
-        <div id="box-btn-modal">
-          <button id="cancel-btn" class="modal-btn">Cancelar</button>
-          <button id="logout-btn-modal" class="modal-btn">Sair</button>
-        </div>
-      </div>
     </div>
   </body>
 </html>
