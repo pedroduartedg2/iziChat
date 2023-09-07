@@ -5,7 +5,10 @@ import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc } f
 verifyLogin();
 
 document.getElementById("logout-btn").addEventListener("click", () => {
-  logout();
+  document.getElementById("boxLoader").style.display = "flex";
+  logout().then(() => {
+    document.getElementById("boxLoader").style.display = "none";
+  });
 });
 
 document.getElementById("send-btn").addEventListener("click", () => {
@@ -79,8 +82,8 @@ const createMessages = async (messages) => {
       alignName = "text-align: end";
     }
     let HTML = `
-    <div class="name-message" style="${alignName}">${name}</div>
     <div class="message-box ${messageBoxOthers}">
+    <div class="name-message" style="${alignName}">${name}</div>
       <div class="message ${messageOthers}">
         <p>${message.message}</p>
         <img src="${message.user.photoURL}" alt="" />
@@ -124,6 +127,7 @@ const rollEnd = () => {
 };
 
 const start = async () => {
+  document.getElementById("boxLoader").style.display = "flex";
   const messagesDb = collection(db, "messages");
   const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
 
@@ -133,7 +137,10 @@ const start = async () => {
       messages.push({ ...doc.data(), id: doc.id });
     });
     console.log("messages: ", messages);
-    createMessages(messages).then(() => rollEnd());
+    createMessages(messages).then(() => {
+      document.getElementById("boxLoader").style.display = "none";
+      rollEnd();
+    });
   });
 };
 

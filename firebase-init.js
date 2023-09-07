@@ -32,7 +32,9 @@ export const signInWitchGoogle = () => {
 
       window.location.href = "/pages/Home/home.html";
     })
-    .catch((error) => console.log("erro: ", error));
+    .catch((error) => {
+      console.log("erro: ", error);
+    });
 };
 
 export const verifyLogin = () => {

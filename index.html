@@ -8,11 +8,20 @@
     <script type="module" src="/firebase-init.js" defer></script>
     <script type="module" src="/services/services.js" defer></script>
     <script type="module" src="/JS/script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body style="padding-top: 0px; padding-bottom: 0px">
     <div id="login-container">
       <img src="/src/Logo.svg" alt="" />
-      <button id="login-btn" class="primary-btn floating-btn">Login com Google</button>
+
+      <button id="login-btn" class="primary-btn floating-btn"><i class="fa-brands fa-google"></i>Login com Google</button>
     </div>
+    <div id="boxLoader" class="boxLoader"><div class="loader"></div></div>
   </body>
 </html>
