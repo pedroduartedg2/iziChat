@@ -79,4 +79,10 @@ const createMessages = async () => {
   document.getElementById("messages-container").innerHTML = allMessages;
 };
 
+let alturaBoxInput = document.getElementById("input-container").clientHeight;
+let alturaHeader = document.querySelector("header").clientHeight;
+console.log(alturaBoxInput);
+console.log(alturaHeader);
+document.getElementById("messages-container").style.height = "calc(100vh - " + (Number(alturaBoxInput) + Number(alturaHeader) + 8) + "px)";
+console.log("calc(100vh - " + Number(alturaBoxInput) + Number(alturaHeader) + "px");
 createMessages();
