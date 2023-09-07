@@ -304,16 +304,3 @@ cancelBtn.addEventListener("click", () => {
 //     }
 //   }
 // });
-
-function estimarAlturaBarraPesquisa() {
-  let windowHeight = window.innerHeight;
-  let documentHeight = document.documentElement.clientHeight;
-
-  // A diferença entre a altura da janela e a altura do documento pode ser uma estimativa da altura da barra de pesquisa
-  let barraPesquisaHeight = windowHeight - documentHeight;
-
-  console.log("Estimativa da altura da barra de pesquisa:", barraPesquisaHeight, "pixels");
-}
-
-// Chame a função para obter a estimativa
-alert(estimarAlturaBarraPesquisa());
