@@ -119,7 +119,7 @@ button:hover {
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  height: 500px;
+  height: calc(100vh - 85px);
   position: fixed;
 }
 
