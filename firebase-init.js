@@ -39,7 +39,7 @@ export const signInWitchGoogle = () => {
 
 export const verifyLogin = () => {
   getAuth().onAuthStateChanged((user) => {
-    console.log("user: ", user);
+    // console.log("user: ", user);
     if (!user) {
       window.location.href = "/index.html";
     }

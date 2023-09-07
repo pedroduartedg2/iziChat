@@ -163,7 +163,7 @@ const formatDate = (timestamp) => {
 };
 
 const createMessages = async (messages) => {
-  console.log("messages:::::", messages);
+  // console.log("messages:::::", messages);
   // let messages = await findMessages();
   let allMessages = "";
   messages.forEach((message) => {
@@ -221,7 +221,7 @@ const start = async () => {
     snapshot.docs.forEach((doc) => {
       messages.push({ ...doc.data(), id: doc.id });
     });
-    console.log("messages: ", messages);
+    // console.log("messages: ", messages);
     createMessages(messages).then(() => {
       document.getElementById("boxLoader").style.display = "none";
       rollEnd();
