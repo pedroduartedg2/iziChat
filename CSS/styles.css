@@ -281,7 +281,7 @@ button:hover {
   position: fixed;
   bottom: 90px;
   right: 1rem;
-  background-color: var(--color-1);
+  background-color: var(--color-5);
   opacity: 80%;
   color: #fff;
   width: 40px;
@@ -298,5 +298,7 @@ button:hover {
 }
 
 .div-flutuante.active {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
