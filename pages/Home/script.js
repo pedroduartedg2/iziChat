@@ -1,6 +1,6 @@
 // import { logout, verifyLogin, auth, col, addDocument, db } from "../../firebase-init.js";
 import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
-import { collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
 
@@ -61,8 +61,9 @@ const findMessages = async () => {
   return messages;
 };
 
-const createMessages = async () => {
-  let messages = await findMessages();
+const createMessages = async (messages) => {
+  console.log("messages:::::", messages);
+  // let messages = await findMessages();
   let allMessages = "";
   messages.forEach((message) => {
     let messageBoxOthers = "";
@@ -101,4 +102,21 @@ createMessages().then(() => {
   var objDiv = document.getElementById("messages-container");
   console.log(objDiv.scrollHeight);
   objDiv.scrollTop = objDiv.scrollHeight;
+});
+
+// onSnapshot(doc(db, "messages", "messages"), (doc) => {
+//   console.log("doc: ", doc);
+//   console.log("Current data: ", doc.data());
+// });
+
+const messagesDb = collection(db, "messages");
+const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
+
+onSnapshot(q, (snapshot) => {
+  let messages = [];
+  snapshot.docs.forEach((doc) => {
+    messages.push({ ...doc.data(), id: doc.id });
+  });
+  console.log("messages: ", messages);
+  createMessages(messages);
 });
