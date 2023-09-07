@@ -98,25 +98,35 @@ document.addEventListener(
   false
 );
 
-createMessages().then(() => {
-  var objDiv = document.getElementById("messages-container");
-  console.log(objDiv.scrollHeight);
-  objDiv.scrollTop = objDiv.scrollHeight;
-});
+// createMessages().then(() => {
+//   var objDiv = document.getElementById("messages-container");
+//   console.log(objDiv.scrollHeight);
+//   objDiv.scrollTop = objDiv.scrollHeight;
+// });
 
 // onSnapshot(doc(db, "messages", "messages"), (doc) => {
 //   console.log("doc: ", doc);
 //   console.log("Current data: ", doc.data());
 // });
 
-const messagesDb = collection(db, "messages");
-const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
+const rollEnd = () => {
+  var objDiv = document.getElementById("messages-container");
+  console.log(objDiv.scrollHeight);
+  objDiv.scrollTop = objDiv.scrollHeight;
+};
 
-onSnapshot(q, (snapshot) => {
-  let messages = [];
-  snapshot.docs.forEach((doc) => {
-    messages.push({ ...doc.data(), id: doc.id });
+const start = async () => {
+  const messagesDb = collection(db, "messages");
+  const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
+
+  await onSnapshot(q, (snapshot) => {
+    let messages = [];
+    snapshot.docs.forEach((doc) => {
+      messages.push({ ...doc.data(), id: doc.id });
+    });
+    console.log("messages: ", messages);
+    createMessages(messages).then(() => rollEnd());
   });
-  console.log("messages: ", messages);
-  createMessages(messages);
-});
+};
+
+start();
