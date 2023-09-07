@@ -73,19 +73,20 @@ const createMessages = async (messages) => {
     let messageBoxOthers = "";
     let messageOthers = "";
     let name = "";
-    let alignName = "";
+    let divName = "";
     if (message.user.uid != findUser().uid) {
       messageBoxOthers = "message-box-others";
       messageOthers = "message-others";
       name = message.user.name;
-    } else {
-      alignName = "text-align: end";
+      divName = `<span class="name-message"">${name}</span>`;
     }
     let HTML = `
     <div class="message-box ${messageBoxOthers}">
-    <div class="name-message" style="${alignName}">${name}</div>
-      <div class="message ${messageOthers}">
-        <p>${message.message}</p>
+    <div class="message ${messageOthers}">
+    <div>
+    ${divName}
+      <p>${message.message}</p>
+    </div>
         <img src="${message.user.photoURL}" alt="" />
       </div>
     </div>`;

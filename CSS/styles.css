@@ -177,6 +177,7 @@ button:hover {
   align-items: end;
   gap: 5px;
   flex-direction: row;
+  max-width: 300px;
 }
 
 .message-others {
@@ -189,22 +190,25 @@ button:hover {
   border-radius: 200px;
 }
 
-.message p {
+.message div {
   padding: 0.5rem 0.8rem;
   background-color: #d5d58d;
   border-radius: 10px;
   color: var(--color-1);
   font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.message-others p {
+.message-others div {
   background-color: var(--color-5);
   color: var(--color-4);
 }
 
 .name-message {
   font-size: 0.7rem;
-  color: var(--color-4);
+  color: var(--color-3);
 }
 
 /* Load */
