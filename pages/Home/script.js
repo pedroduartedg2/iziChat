@@ -228,6 +228,13 @@ const start = async () => {
   });
 };
 
+window.addEventListener("resize", () => {
+  // Update the element's size
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  console.log("teste", vh);
+});
+
 // Função para verificar a posição de rolagem
 function verificaRolagem() {
   var distanciaRolada = window.scrollY || window.pageYOffset;
