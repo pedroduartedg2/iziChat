@@ -19,6 +19,10 @@
 
 body {
   background-color: var(--color-1);
+  margin-top: 66px !important;
+  margin-bottom: 4.2rem !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
   /* position: relative;
   height: 100vh; */
   /* margin-bottom: 70px; */
@@ -26,17 +30,9 @@ body {
 }
 
 main {
-  /* overflow: auto; */
-  margin-top: 66px !important;
-  margin-bottom: 95px !important;
-  padding-left: 1rem;
-  padding-right: 1rem;
   display: flex;
-  /* flex-grow: 1; */
   flex-direction: column;
   gap: 10px;
-  /* overflow: auto; */
-  /* height: calc(100vh - 8rem); */
   background-color: var(--color-2);
 }
 
@@ -68,9 +64,9 @@ footer {
   right: 0;
   display: flex;
   justify-content: center;
-  padding: 0.4rem 1rem;
+  padding: 0.5rem 1rem;
   background-color: var(--color-1);
-  height: 4rem;
+  height: 4.2rem;
   gap: 10px;
   width: 100%;
   justify-content: space-between;
