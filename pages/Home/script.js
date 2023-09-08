@@ -222,8 +222,8 @@ const start = async () => {
     // console.log("messages: ", messages);
     createMessages(messages).then(() => {
       document.getElementById("boxLoader").style.display = "none";
-      rollEnd();
-      // rolarParaOFinal();
+      // rollEnd();
+      rolarParaOFinal();
     });
   });
 };
@@ -243,12 +243,13 @@ function verificaRolagem() {
 // Verificar a posição de rolagem quando a página é rolada
 window.addEventListener("scroll", verificaRolagem);
 
-// Função para rolar a página para o final
+// Função para rolar para o final da tag <main>
 function rolarParaOFinal() {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth", // Rolar suavemente para o final
-  });
+  var mainElement = document.querySelector("main"); // Obtenha a referência do elemento <main>
+
+  if (mainElement) {
+    mainElement.scrollTop = mainElement.scrollHeight;
+  }
 }
 
 // Adicione um evento de clique à div
