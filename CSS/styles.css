@@ -57,7 +57,8 @@ header div {
 
 footer {
   width: 100%;
-  position: fixed;
+  position: sticky;
+  position: -webkit-sticky;
   bottom: 0;
   left: 0;
   right: 0;
