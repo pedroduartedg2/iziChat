@@ -31,7 +31,8 @@ main {
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  height: auto;
+  height: calc(100vh - 155px);
+  background-color: blue;
 }
 
 button {
