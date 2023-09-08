@@ -159,7 +159,7 @@ button:hover {
 
 /* Mensagem */
 #messages-container {
-  padding: 1rem;
+  padding: 0.2rem 1rem;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
