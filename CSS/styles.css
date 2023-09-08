@@ -31,9 +31,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: var(--color-5);
+  background-color: var(--color-2);
   overflow: auto;
-  height: 100vh;
+  height: calc(100vh - 8rem);
 }
 
 header {
