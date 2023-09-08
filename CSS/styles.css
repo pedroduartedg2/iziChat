@@ -25,8 +25,8 @@ body {
   overflow: hidden;
 }
 main {
-  margin-top: 70px !important;
-  margin-bottom: 85px !important;
+  /* margin-top: 70px !important;
+  margin-bottom: 85px !important; */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -68,7 +68,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   background: var(--color-1);
@@ -81,7 +81,7 @@ header div {
 }
 
 menu {
-  position: fixed;
+  position: sticky;
   width: 100%;
   bottom: 0;
   left: 0;
