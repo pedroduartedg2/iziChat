@@ -206,9 +206,7 @@ document.addEventListener(
 );
 
 const rollEnd = () => {
-  var objDiv = document.getElementById("messages-container");
-  console.log(objDiv.scrollHeight);
-  objDiv.scrollTop = objDiv.scrollHeight;
+  window.scrollTo(0, document.body.scrollHeight);
 };
 
 const start = async () => {
@@ -229,47 +227,33 @@ const start = async () => {
   });
 };
 
-const divFlutuante = document.getElementById("div-flutuante");
-const messagesContainer = document.getElementById("messages-container");
+// Função para verificar a posição de rolagem
+function verificaRolagem() {
+  var distanciaRolada = window.scrollY || window.pageYOffset;
+  var divFlutuante = document.getElementById("div-flutuante");
 
-// Variável para controlar a exibição do botão
-let exibirBotao = false;
-
-messagesContainer.addEventListener("scroll", () => {
-  const scrollTop = messagesContainer.scrollTop;
-  const scrollHeight = messagesContainer.scrollHeight;
-  const clientHeight = messagesContainer.clientHeight;
-
-  // Calcular 10% da altura da div
-  const dezPorcento = (scrollHeight - clientHeight) * 0.9;
-
-  // Verifique se a rolagem é maior que 10% da altura da div para exibir o botão
-  if (scrollTop > dezPorcento) {
-    exibirBotao = true;
+  if (distanciaRolada < 100) {
+    // Ajuste o valor conforme necessário
+    divFlutuante.style.display = "block";
   } else {
-    exibirBotao = false;
+    divFlutuante.style.display = "none";
   }
+}
 
-  // Exiba ou oculte o botão com base na variável exibirBotao
-  if (exibirBotao) {
-    divFlutuante.classList.remove("active");
-  } else {
-    divFlutuante.classList.add("active");
-  }
-});
+// Verificar a posição de rolagem quando a página é rolada
+window.addEventListener("scroll", verificaRolagem);
 
-divFlutuante.addEventListener("click", () => {
-  // Adicione o efeito suave ao rolar para o início da div "messages-container"
-  messagesContainer.style.scrollBehavior = "smooth";
+// Função para rolar a página para o final
+function rolarParaOFinal() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth", // Rolar suavemente para o final
+  });
+}
 
-  // Role para o início da div "messages-container" quando a div flutuante é clicada
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-  // Remova o efeito suave após a rolagem
-  setTimeout(() => {
-    messagesContainer.style.scrollBehavior = "auto";
-  }, 1000); // Ajuste o tempo conforme necessário
-});
+// Adicione um evento de clique à div
+var divFlutuante = document.getElementById("div-flutuante");
+divFlutuante.addEventListener("click", rolarParaOFinal);
 
 document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
 
