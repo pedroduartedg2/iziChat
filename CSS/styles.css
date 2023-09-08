@@ -24,14 +24,14 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
   overflow: hidden;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 main {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: var(--color-3);
+  background-color: var(--color-5);
   overflow: auto;
   height: 100vh;
 }
