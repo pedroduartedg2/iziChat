@@ -15,6 +15,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
+  overflow: hidden;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
 }
 
 #geral {
-  overflow: auto;
+  overflow: auto !important;
   height: 100vh;
 }
 
