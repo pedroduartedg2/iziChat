@@ -3,12 +3,12 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signO
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDzZvQ1Uxp_buM4otrSUOuHO3n31Gybk-g",
-  authDomain: "zapchat-6eb65.firebaseapp.com",
-  projectId: "zapchat-6eb65",
-  storageBucket: "zapchat-6eb65.appspot.com",
-  messagingSenderId: "758476996810",
-  appId: "1:758476996810:web:c12125ba8465b0190cb433",
+  apiKey: "AIzaSyCi3G9zl06b8e8ui6O0pWtCQ5JY8PbZepg",
+  authDomain: "izichat-71bde.firebaseapp.com",
+  projectId: "izichat-71bde",
+  storageBucket: "izichat-71bde.appspot.com",
+  messagingSenderId: "1096717886083",
+  appId: "1:1096717886083:web:e64a39ef4302b21d70b1b6"
 };
 const app = initializeApp(firebaseConfig);
 
