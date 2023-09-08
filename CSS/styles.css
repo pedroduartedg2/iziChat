@@ -19,6 +19,7 @@
 
 body {
   background-color: var(--color-1);
+  position: relative;
 
   /* margin-bottom: 70px; */
   /* overflow: hidden; */
