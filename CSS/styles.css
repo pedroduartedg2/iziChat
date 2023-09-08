@@ -54,9 +54,12 @@ input::placeholder {
 }
 
 main {
-  margin-top: 70px !important;
-  padding-bottom: 170px !important;
+  padding-top: 80px !important;
+  padding-bottom: 95px !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
   display: flex;
+  /* flex-grow: 1; */
   flex-direction: column;
   gap: 10px;
   overflow: auto;
@@ -185,17 +188,17 @@ button:hover {
 }
 
 /* Mensagem */
-#messages-container {
+/* #messages-container {
   padding: 0.2rem 1rem;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   gap: 10px;
-  /* overflow: auto; */
-  /* height: calc(100vh - 150px); */
-  /* overflow-x: hidden; */
-  /* position: absolute; */
-}
+  overflow: auto; 
+  height: calc(100vh - 150px); 
+  overflow-x: hidden; 
+  position: absolute;
+} */
 
 .message-box {
   width: 100%;
