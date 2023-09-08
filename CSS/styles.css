@@ -255,6 +255,7 @@ button:hover {
   top: 0;
   background-color: #00000020;
   width: 100%;
+  z-index: 9999;
 }
 
 @keyframes spin {
