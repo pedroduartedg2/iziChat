@@ -19,38 +19,10 @@
 
 body {
   background-color: var(--color-1);
-  /* position: relative; */
-
+  position: relative;
+  height: 100vh;
   /* margin-bottom: 70px; */
   overflow: auto;
-}
-
-button {
-  padding: 1rem 1.5rem;
-  border-radius: 200px;
-  border: none;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-i {
-  font-size: 16px;
-}
-
-input {
-  padding: 1rem 1.3rem;
-  border-radius: 200px;
-  font-weight: 400;
-  background-color: transparent;
-  border: 1px solid var(--color-4);
-  color: var(--color-4);
-  width: 100%;
-  font-size: 1rem;
-}
-
-input::placeholder {
-  color: var(--color-4);
 }
 
 main {
@@ -64,7 +36,7 @@ main {
   gap: 10px;
   /* overflow: auto; */
   /* height: 100vh; */
-  background-color: var(--color-5);
+  background-color: var(--color-2);
 }
 
 header {
@@ -101,6 +73,34 @@ menu div {
   gap: 10px;
   width: 100%;
   justify-content: space-between;
+}
+
+button {
+  padding: 1rem 1.5rem;
+  border-radius: 200px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+i {
+  font-size: 16px;
+}
+
+input {
+  padding: 1rem 1.3rem;
+  border-radius: 200px;
+  font-weight: 400;
+  background-color: transparent;
+  border: 1px solid var(--color-4);
+  color: var(--color-4);
+  width: 100%;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: var(--color-4);
 }
 
 #logout-btn {
