@@ -232,7 +232,7 @@ function verificaRolagem() {
   var distanciaRolada = window.scrollY || window.pageYOffset;
   var divFlutuante = document.getElementById("div-flutuante");
 
-  if (distanciaRolada < 110) {
+  if (distanciaRolada < 200) {
     // Ajuste o valor conforme necessário
     divFlutuante.style.display = "block";
   } else {
