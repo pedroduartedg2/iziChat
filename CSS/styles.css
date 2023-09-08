@@ -165,7 +165,7 @@ button:hover {
   flex-direction: column;
   gap: 10px;
   overflow: scroll;
-  height: calc(100vh - 150px);
+  /* height: calc(100vh - 150px); */
   overflow-x: hidden;
   /* position: absolute; */
 }
