@@ -38,7 +38,7 @@ main {
   padding-right: 1rem;
   flex-direction: column;
   gap: 10px;
-  background-color: var(--color-2);
+  background-color: var(--color-1);
 }
 
 header {
