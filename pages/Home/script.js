@@ -223,7 +223,7 @@ const start = async () => {
     createMessages(messages).then(() => {
       document.getElementById("boxLoader").style.display = "none";
       // rollEnd();
-      rolarParaOFinal();
+      // rolarParaOFinal();
     });
   });
 };
