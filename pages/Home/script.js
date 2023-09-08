@@ -231,8 +231,8 @@ const start = async () => {
 function verificaRolagem() {
   var distanciaRolada = window.scrollY || window.pageYOffset;
   var divFlutuante = document.getElementById("div-flutuante");
-
-  if (distanciaRolada < 200) {
+  console.log("distanciaRolada: ", distanciaRolada);
+  if (distanciaRolada < 250) {
     // Ajuste o valor conforme necessário
     divFlutuante.style.display = "block";
   } else {
