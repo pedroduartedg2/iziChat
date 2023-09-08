@@ -23,7 +23,8 @@ body {
   padding-bottom: 4.3rem !important;
   padding-left: 1rem;
   padding-right: 1rem;
-  overflow: scroll;
+  overflow: hidden;
+  height: 100vh;
 }
 
 main {
@@ -31,6 +32,8 @@ main {
   flex-direction: column;
   gap: 10px;
   background-color: var(--color-2);
+  overflow: auto;
+  height: 100vh;
 }
 
 header {
@@ -60,14 +63,11 @@ footer {
   left: 0;
   right: 0;
   display: flex;
-  justify-content: center;
   padding: 0.5rem 1rem;
   background-color: var(--color-1);
   height: 4.2rem;
   gap: 10px;
-  width: 100%;
   justify-content: space-between;
-  vertical-align: middle;
 }
 
 button {
