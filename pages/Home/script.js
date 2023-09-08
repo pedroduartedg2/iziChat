@@ -222,7 +222,7 @@ const start = async () => {
     // console.log("messages: ", messages);
     createMessages(messages).then(() => {
       document.getElementById("boxLoader").style.display = "none";
-      // rollEnd();
+      rollEnd();
       // rolarParaOFinal();
     });
   });
