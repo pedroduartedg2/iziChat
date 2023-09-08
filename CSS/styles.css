@@ -57,8 +57,7 @@ header div {
 
 footer {
   width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -70,6 +69,7 @@ footer {
   gap: 10px;
   justify-content: space-between;
   margin-bottom: env(safe-area-inset-bottom);
+  z-index: 10;
 }
 
 button {
