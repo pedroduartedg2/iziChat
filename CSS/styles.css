@@ -23,7 +23,7 @@ body {
   padding-bottom: 4.3rem !important;
   padding-left: 1rem;
   padding-right: 1rem;
-  overflow: unset;
+  overflow: scroll;
 }
 
 main {
