@@ -231,7 +231,6 @@ const start = async () => {
 function verificaRolagem() {
   var distanciaRolada = window.scrollY || window.pageYOffset;
   var divFlutuante = document.getElementById("div-flutuante");
-  console.log("distanciaRolada: ", distanciaRolada);
   if (distanciaRolada < 250) {
     // Ajuste o valor conforme necessário
     divFlutuante.style.display = "block";
@@ -253,7 +252,7 @@ function rolarParaOFinal() {
 
 // Adicione um evento de clique à div
 var divFlutuante = document.getElementById("div-flutuante");
-divFlutuante.addEventListener("click", rolarParaOFinal);
+// divFlutuante.addEventListener("click", rolarParaOFinal);
 
 document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
 
