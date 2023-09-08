@@ -68,6 +68,7 @@ footer {
   max-height: 4.2rem;
   gap: 10px;
   justify-content: space-between;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 button {
