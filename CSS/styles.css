@@ -32,7 +32,7 @@ main {
   gap: 10px;
   overflow: auto;
   height: calc(100vh - 155px);
-  background-color: var(--color-5);
+  background-color: var(--color-2);
 }
 
 button {
@@ -81,10 +81,10 @@ header div {
 }
 
 menu {
-  position: sticky;
+  position: sticky !important;
   width: 100%;
-  bottom: 0;
-  left: 0;
+  bottom: 0 !important;
+  left: 0 !important;
   display: flex;
   justify-content: center;
   padding: 1rem;
