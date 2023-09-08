@@ -55,7 +55,7 @@ input::placeholder {
 
 main {
   margin-top: 70px !important;
-  margin-bottom: 85px !important;
+  padding-bottom: 170px !important;
   display: flex;
   flex-direction: column;
   gap: 10px;
