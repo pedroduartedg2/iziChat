@@ -22,7 +22,7 @@ body {
   /* position: relative; */
 
   /* margin-bottom: 70px; */
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 main {
   margin-top: 70px !important;
@@ -30,6 +30,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow: auto;
+  height: auto;
 }
 
 button {
@@ -187,9 +189,9 @@ button:hover {
   flex-grow: 1;
   flex-direction: column;
   gap: 10px;
-  overflow: scroll;
+  /* overflow: auto; */
   /* height: calc(100vh - 150px); */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   /* position: absolute; */
 }
 
