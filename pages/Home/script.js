@@ -222,7 +222,8 @@ const start = async () => {
     // console.log("messages: ", messages);
     createMessages(messages).then(() => {
       document.getElementById("boxLoader").style.display = "none";
-      rollEnd();
+      // rollEnd();
+      rolarParaOFinal();
     });
   });
 };
@@ -252,7 +253,7 @@ function rolarParaOFinal() {
 
 // Adicione um evento de clique à div
 var divFlutuante = document.getElementById("div-flutuante");
-// divFlutuante.addEventListener("click", rolarParaOFinal);
+divFlutuante.addEventListener("click", rolarParaOFinal);
 
 document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
 
