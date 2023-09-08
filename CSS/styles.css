@@ -144,6 +144,7 @@ button:hover {
   justify-content: center;
   padding: 1rem;
   background-color: var(--color-1);
+  max-height: 85px;
 }
 
 #input-container div {
