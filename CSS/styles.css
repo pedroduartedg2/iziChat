@@ -15,7 +15,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 body {
@@ -61,10 +61,11 @@ header div {
   gap: 10px;
 }
 
-input-message {
+footer {
   width: 100%;
   position: fixed;
-
+  height: -webkit-fill-available;
+  -webkit-overflow-scrolling: touch;
   bottom: 0;
   left: 0;
   right: 0;
