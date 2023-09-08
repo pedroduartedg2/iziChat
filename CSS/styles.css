@@ -135,7 +135,7 @@ button:hover {
 
 /* Home */
 #input-container {
-  position: fixed;
+  position: sticky;
   width: 100%;
   bottom: 0;
   display: flex;
