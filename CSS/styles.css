@@ -30,6 +30,8 @@ body {
 #geral {
   overflow: auto !important;
   height: 100svh;
+  padding-top: 4.1rem;
+  padding-bottom: 4.3rem;
 }
 
 main {
