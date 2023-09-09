@@ -253,8 +253,48 @@ function rolarParaOFinal() {
 }
 
 // Adicione um evento de clique à div
+// var divFlutuante = document.getElementById("div-flutuante");
+// divFlutuante.addEventListener("click", rolarParaOFinal);
+
+function verificarRolagem() {
+  var minhaDiv = document.getElementById("geral");
+  var divFlutuante = document.getElementById("div-flutuante");
+
+  // Altura total da div
+  var alturaTotal = minhaDiv.scrollHeight;
+
+  // Altura visível da div
+  var alturaVisivel = minhaDiv.clientHeight;
+
+  // Quantidade rolada
+  var quantidadeRolada = minhaDiv.scrollTop;
+
+  // Verifique se a quantidade rolada é pelo menos 10% da altura total
+  if (quantidadeRolada / (alturaTotal - alturaVisivel) <= 0.9) {
+    divFlutuante.style.display = "block";
+  } else {
+    divFlutuante.style.display = "none";
+  }
+}
+
+// Adicione um ouvinte de rolagem à sua div
+var minhaDiv = document.getElementById("geral");
+minhaDiv.addEventListener("scroll", verificarRolagem);
+
+// Adicione um ouvinte de clique ao botão flutuante
 var divFlutuante = document.getElementById("div-flutuante");
-divFlutuante.addEventListener("click", rolarParaOFinal);
+divFlutuante.addEventListener("click", function () {
+  rolarParaFinal();
+});
+
+function rolarParaFinal() {
+  var minhaDiv = document.getElementById("geral");
+  var alturaTotal = minhaDiv.scrollHeight - minhaDiv.clientHeight;
+  minhaDiv.scrollTo({
+    top: alturaTotal,
+    behavior: "smooth",
+  });
+}
 
 document.getElementById("profile-pic").setAttribute("src", localStorage.getItem("profilePic"));
 
