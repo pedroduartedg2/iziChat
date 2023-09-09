@@ -245,7 +245,7 @@ window.addEventListener("scroll", verificaRolagem);
 
 // Função para rolar para o final da tag <main>
 function rolarParaOFinal() {
-  var mainElement = document.querySelector("main"); // Obtenha a referência do elemento <main>
+  var mainElement = document.querySelector("#geral"); // Obtenha a referência do elemento <main>
 
   if (mainElement) {
     mainElement.scrollTop = mainElement.scrollHeight;
