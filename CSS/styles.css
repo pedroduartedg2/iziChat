@@ -502,4 +502,5 @@ h5 {
 
 #room-name {
   color: var(--color-2);
+  font-weight: 500;
 }
