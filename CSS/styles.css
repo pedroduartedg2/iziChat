@@ -110,6 +110,15 @@ input::placeholder {
   color: var(--color-4);
 }
 
+h4 {
+  color: var(--color-4);
+  padding-top: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
 #logout-btn {
   color: var(--color-4);
   background-color: var(--color-5);
@@ -419,4 +428,62 @@ button:hover {
 h2 {
   font-size: 1.2rem;
   color: var(--color-1);
+}
+
+/* Rooms */
+
+#rooms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#my-rooms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.room-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 1rem;
+  /* border: 1px solid var(--color-5); */
+  background-color: var(--color-5);
+  padding: 1.2rem 1rem;
+}
+
+.room-card button {
+  background-color: transparent;
+  border: 1px solid var(--color-4);
+  color: var(--color-4);
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-4);
+}
+
+#buttons-rooms {
+  display: flex;
+  gap: 0.7rem;
+}
+
+#buttons-rooms button {
+  background-color: var(--color-2);
+  color: var(--color-6);
+}
+
+#back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--color-4);
+}
+
+#room-name {
+  color: var(--color-2);
 }

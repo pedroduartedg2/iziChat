@@ -1,6 +1,6 @@
 // import { logout, verifyLogin, auth, col, addDocument, db } from "../../firebase-init.js";
 import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
-import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc, where } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
 
@@ -33,10 +33,13 @@ function getTimestampDataOntem() {
 }
 
 const sendMessage = async (message) => {
+  let idRoom = new URLSearchParams(window.location.search).get("r");
+
   try {
     const docRef = await addDoc(collection(db, "messages"), {
       message: message,
       created: new Date(),
+      idRoom: idRoom,
       user: {
         email: findUser().email,
         name: findUser().displayName,
@@ -61,18 +64,20 @@ const findUser = () => {
   return auth.currentUser;
 };
 
-const findMessages = async () => {
-  const messagesDb = collection(db, "messages");
-  const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
-  const querySnapshot = await getDocs(q);
+// const findMessages = async () => {
+//   let idRoom = new URLSearchParams(window.location.search).get("r");
 
-  // const querySnapshot = await getDocs(collection(db, "messages"));
-  let messages = [];
-  querySnapshot.forEach((doc) => {
-    messages.push(doc.data());
-  });
-  return messages;
-};
+//   const messagesDb = collection(db, "messages");
+//   const q = await query(messagesDb, where("idRoom", "==", idRoom), orderBy("created", "asc"), limit(5000));
+//   const querySnapshot = await getDocs(q);
+
+//   // const querySnapshot = await getDocs(collection(db, "messages"));
+//   let messages = [];
+//   querySnapshot.forEach((doc) => {
+//     messages.push(doc.data());
+//   });
+//   return messages;
+// };
 
 function isHoje(data) {
   const dataAtual = new Date(); // Obtém a data atual
@@ -210,23 +215,42 @@ const rollEnd = () => {
 };
 
 const start = async () => {
+  let idRoom = new URLSearchParams(window.location.search).get("r");
+
   document.getElementById("boxLoader").style.display = "flex";
   const messagesDb = collection(db, "messages");
-  const q = await query(messagesDb, orderBy("created", "asc"), limit(5000));
+  const q = await query(messagesDb, where("idRoom", "==", idRoom), orderBy("created", "asc"), limit(5000));
 
   await onSnapshot(q, (snapshot) => {
     let messages = [];
     snapshot.docs.forEach((doc) => {
       messages.push({ ...doc.data(), id: doc.id });
     });
-    // console.log("messages: ", messages);
+
     createMessages(messages).then(() => {
       document.getElementById("boxLoader").style.display = "none";
-      // rollEnd();
       rolarParaOFinal();
     });
   });
 };
+
+const fillNameRoom = async () => {
+  let idRoom = new URLSearchParams(window.location.search).get("r");
+
+  const roomsDb = collection(db, "rooms");
+  const q1 = await query(roomsDb);
+  console.log("q1: ", q1);
+
+  await onSnapshot(q1, (snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if (doc.id == idRoom) {
+        console.log(doc.data().name);
+        document.getElementById("room-name").innerHTML = doc.data().name;
+      }
+    });
+  });
+};
+fillNameRoom();
 
 // Função para verificar a posição de rolagem
 function verificaRolagem() {

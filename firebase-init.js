@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "izichat-71bde",
   storageBucket: "izichat-71bde.appspot.com",
   messagingSenderId: "1096717886083",
-  appId: "1:1096717886083:web:e64a39ef4302b21d70b1b6"
+  appId: "1:1096717886083:web:e64a39ef4302b21d70b1b6",
 };
 const app = initializeApp(firebaseConfig);
 
@@ -30,7 +30,7 @@ export const signInWitchGoogle = () => {
       localStorage.setItem("email", email);
       localStorage.setItem("profilePic", profilePic);
 
-      window.location.href = "/pages/Home/home.html";
+      window.location.href = "/pages/Rooms/rooms.html";
     })
     .catch((error) => {
       console.log("erro: ", error);

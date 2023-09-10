@@ -6,7 +6,7 @@
     <title>Home</title>
     <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/CSS/styles.css" />
-    <script type="module" src="./script.js" defer></script>
+    <script type="module" src="./rooms.js" defer></script>
     <script type="module" src="/firebase-init.js" defer></script>
     <script type="module" src="/services/services.js" defer></script>
     <link
@@ -20,20 +20,24 @@
   <body>
     <div id="geral">
       <header>
-        <!-- <img src="/src/Logo.svg" alt="" /> -->
-        <a id="back-btn" href="../Rooms/rooms.html">
-          <i class="fa-solid fa-angle-left"></i>
-          <p>Voltar</p>
-        </a>
-        <div id="room-name"></div>
+        <img src="/src/Logo.svg" alt="" />
         <div>
           <img id="profile-pic" src="" alt="" />
-          <!-- <button id="logout-btn" class="secodary-btn">Sair</button> -->
           <i id="logout-btn" class="fa-solid fa-right-from-bracket"></i>
-          <!-- <p id="name-user"></p> -->
         </div>
       </header>
-      <main id="messages-container"></main>
+      <main>
+        <div id="buttons-rooms">
+          <input id="input-room-name" type="text" placeholder="Nome da sala" maxlength="18" />
+          <button id="create-room-btn">Criar</button>
+          <!-- <button>Minhas salas</button> -->
+        </div>
+
+        <h4>Minhas salas</h4>
+        <div id="my-rooms-container"></div>
+        <h4>Salas</h4>
+        <div id="rooms-container"></div>
+      </main>
 
       <div id="myModal" class="modal">
         <div class="modal-content">
@@ -49,16 +53,6 @@
       </div>
 
       <div id="boxLoader" class="boxLoader"><div class="loader"></div></div>
-
-      <div class="div-flutuante" id="div-flutuante">
-        <i class="fa-solid fa-caret-down"></i>
-      </div>
     </div>
-    <footer>
-      <input id="input-message" type="text" placeholder="Escreva uma mensagem..." autofocus />
-      <button id="send-btn" class="primary-btn">
-        <i class="fa-solid fa-paper-plane"></i>
-      </button>
-    </footer>
   </body>
 </html>
