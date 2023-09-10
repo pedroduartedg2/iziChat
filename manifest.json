@@ -5,7 +5,7 @@
   "background_color": "#052941",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/",
+  "scope": "/pages/Rooms/rooms.html",
   "start_url": "/pages/Rooms/rooms.html",
   "icons": [
     {
