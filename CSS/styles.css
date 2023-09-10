@@ -449,10 +449,19 @@ h2 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-radius: 1rem;
-  /* border: 1px solid var(--color-5); */
+  border-left: 5px solid var(--color-2);
   background-color: var(--color-5);
   padding: 1.2rem 1rem;
+  border-radius: 0.8rem;
+}
+
+#my-rooms-container .room-card {
+  background-color: var(--color-6);
+  border-color: var(--color-2);
+}
+
+#my-rooms-container .room-card h5 {
+  color: var(--color-1);
 }
 
 .room-card button {
