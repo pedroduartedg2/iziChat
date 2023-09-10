@@ -113,6 +113,8 @@ input::placeholder {
 h4 {
   color: var(--color-4);
   padding-top: 1rem;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 a {
@@ -436,12 +438,16 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  color: var(--color-3);
+  font-size: 0.8rem;
 }
 
 #my-rooms-container {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  color: var(--color-3);
+  font-size: 0.8rem;
 }
 
 .room-card {

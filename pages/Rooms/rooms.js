@@ -75,8 +75,10 @@ const createRooms = async (rooms) => {
       allRooms += HTML;
     }
   });
-  document.getElementById("my-rooms-container").innerHTML = myRooms;
-  document.getElementById("rooms-container").innerHTML = allRooms;
+  if (myRooms) document.getElementById("my-rooms-container").innerHTML = myRooms;
+  else document.getElementById("my-rooms-container").innerHTML = "Você não possui salas.";
+  if (allRooms) document.getElementById("rooms-container").innerHTML = allRooms;
+  else document.getElementById("rooms-container").innerHTML = "Nenhuma sala encontrada.";
 };
 
 const start = async () => {
