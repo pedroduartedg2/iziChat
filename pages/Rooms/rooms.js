@@ -124,3 +124,43 @@ openModalBtn.addEventListener("click", () => {
 cancelBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
+
+// Notificações
+// Verifique se o navegador suporta notificações
+if ("Notification" in window) {
+  // Verifique se as notificações estão desativadas
+  if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+    // Solicite permissão para enviar notificações
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+        console.log("Permissão concedida para enviar notificações!");
+      } else {
+        console.warn("Permissão negada para enviar notificações.");
+      }
+    });
+  }
+}
+
+// Verifique se o navegador suporta notificações
+if ("Notification" in window && Notification.permission === "granted") {
+  // Crie e exiba a notificação
+  var notification = new Notification("Título da Notificação", {
+    body: "Este é o corpo da notificação.",
+    icon: "icone.png", // Substitua "icone.png" pelo URL da imagem do ícone desejado.
+  });
+
+  // Defina um evento de clique na notificação (opcional)
+  notification.onclick = function () {
+    console.log("A notificação foi clicada.");
+    // Você pode adicionar ações a serem executadas ao clicar na notificação.
+  };
+} else if (Notification.permission !== "denied") {
+  // Se a permissão não foi negada, solicite novamente
+  Notification.requestPermission().then(function (permission) {
+    if (permission === "granted") {
+      console.log("Permissão concedida para enviar notificações!");
+    } else {
+      console.warn("Permissão negada para enviar notificações.");
+    }
+  });
+}
