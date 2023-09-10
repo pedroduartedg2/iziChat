@@ -3,7 +3,7 @@
   "short_name": "iziChat",
   "theme_color": "#052941",
   "background_color": "#052941",
-  "display": "browser",
+  "display": "fullScreen",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/pages/Rooms/rooms.html",
