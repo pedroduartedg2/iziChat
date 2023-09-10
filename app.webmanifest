@@ -5,7 +5,7 @@
   "background_color": "#052941",
   "display": "fullScreen",
   "orientation": "portrait",
-  "scope": "/pages/Rooms/rooms.html",
+  "scope": "/",
   "start_url": "/pages/Rooms/rooms.html",
   "icons": [
     {
