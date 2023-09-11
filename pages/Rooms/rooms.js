@@ -169,4 +169,30 @@ function inscreverParaNotificacoes() {
   }
 }
 
+// main.js (sua página)
+
+function enviarNotificacaoDeTeste() {
+  if ("serviceWorker" in navigator && "PushManager" in window) {
+    navigator.serviceWorker.ready
+      .then(function (registration) {
+        // Configure a notificação de teste
+        const options = {
+          body: "Esta é uma notificação de teste.",
+          icon: "icone.png", // Substitua pelo URL do ícone da notificação
+        };
+
+        // Enviar a notificação
+        registration.showNotification("Notificação de Teste", options);
+      })
+      .catch(function (erro) {
+        console.error("Erro ao enviar notificação de teste:", erro);
+      });
+  } else {
+    console.warn("Notificações push ou Service Worker não são suportados neste navegador.");
+  }
+}
+
+enviarNotificacaoDeTeste();
+
 document.getElementById("notifications").addEventListener("click", () => solicitarPermissaoNotificacao());
+document.getElementById("notifications").addEventListener("click", () => enviarNotificacaoDeTeste());
