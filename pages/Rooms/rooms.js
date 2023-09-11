@@ -127,63 +127,118 @@ cancelBtn.addEventListener("click", () => {
 
 // Notificações
 
-const button = document.getElementById("notifications");
-button.addEventListener("click", () => {
-  Notification.requestPermission().then((result) => {
-    if (result === "granted") {
-      randomNotification();
-    }
-  });
+// service-worker.js
+
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open("my-cache").then(function (cache) {
+      return cache.addAll([
+        // Lista de arquivos para serem armazenados em cache
+        "/pages/Rooms/rooms.html",
+        "/pages/Rooms/rooms.js",
+        // Adicione outros arquivos estáticos aqui
+      ]);
+    })
+  );
 });
 
-function randomNotification() {
-  const randomItem = Math.floor(Math.random());
-  const notifTitle = "Título";
-  const notifBody = `Mensagem da notificação`;
-  const notifImg = "../../src/logo.png";
-  const options = {
-    body: notifBody,
-    icon: notifImg,
-  };
-  new Notification(notifTitle, options);
-  setTimeout(randomNotification, 30000);
+self.addEventListener("fetch", function (event) {
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      return response || fetch(event.request);
+    })
+  );
+});
+
+function solicitarPermissaoNotificacao() {
+  if ("Notification" in window) {
+    Notification.requestPermission()
+      .then(function (permissao) {
+        if (permissao === "granted") {
+          console.log("Permissão concedida para notificações!");
+          // Agora você pode se inscrever para notificações push
+          inscreverParaNotificacoes();
+        } else if (permissao === "denied") {
+          console.warn("Permissão negada para notificações.");
+        }
+      })
+      .catch(function (erro) {
+        console.error("Erro ao solicitar permissão para notificações:", erro);
+      });
+  } else {
+    console.log("Notificações não são suportadas neste navegador.");
+  }
 }
 
-// Verifique se o navegador suporta notificações
-// if ("Notification" in window) {
-//   // Verifique se as notificações estão desativadas
-//   if (Notification.permission !== "granted" && Notification.permission !== "denied") {
-//     // Solicite permissão para enviar notificações
-//     Notification.requestPermission().then(function (permission) {
-//       if (permission === "granted") {
-//         console.log("Permissão concedida para enviar notificações!");
-//       } else {
-//         console.warn("Permissão negada para enviar notificações.");
-//       }
-//     });
-//   }
-// }
+document.getElementById("notifications").addEventListener("click", () => solicitarPermissaoNotificacao());
 
-// // Verifique se o navegador suporta notificações
-// if ("Notification" in window && Notification.permission === "granted") {
-//   // Crie e exiba a notificação
-//   var notification = new Notification("Título da Notificação", {
-//     body: "Este é o corpo da notificação.",
-//     icon: "icone.png", // Substitua "icone.png" pelo URL da imagem do ícone desejado.
-//   });
+// service-worker.js (atualize)
 
-//   // Defina um evento de clique na notificação (opcional)
-//   notification.onclick = function () {
-//     console.log("A notificação foi clicada.");
-//     // Você pode adicionar ações a serem executadas ao clicar na notificação.
-//   };
-// } else if (Notification.permission !== "denied") {
-//   // Se a permissão não foi negada, solicite novamente
-//   Notification.requestPermission().then(function (permission) {
-//     if (permission === "granted") {
-//       console.log("Permissão concedida para enviar notificações!");
-//     } else {
-//       console.warn("Permissão negada para enviar notificações.");
-//     }
-//   });
-// }
+self.addEventListener("push", function (event) {
+  const options = {
+    body: event.data.text(),
+    icon: "icone.png", // Substitua pelo URL do ícone da notificação
+  };
+
+  event.waitUntil(self.registration.showNotification("Título da Notificação", options));
+});
+
+self.addEventListener("notificationclick", function (event) {
+  // Lidar com o clique na notificação, se necessário
+  event.notification.close();
+  // Aqui você pode redirecionar o usuário para uma página específica, por exemplo:
+  // clients.openWindow('https://seusite.com/pagina-de-notificacao');
+});
+
+// main.js (sua página)
+
+function inscreverParaNotificacoes() {
+  if ("serviceWorker" in navigator && "PushManager" in window) {
+    navigator.serviceWorker.ready
+      .then(function (registration) {
+        return registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: "SUA_CHAVE_PUBLICA_VAPID", // Substitua pela chave pública VAPID
+        });
+      })
+      .then(function (subscription) {
+        console.log("Inscrição para notificações push bem-sucedida:", subscription);
+        // Você pode enviar a inscrição para o servidor aqui, se necessário
+      })
+      .catch(function (erro) {
+        console.error("Erro ao se inscrever para notificações push:", erro);
+      });
+  } else {
+    console.warn("Notificações push ou Service Worker não são suportados neste navegador.");
+  }
+}
+
+// Código do servidor para enviar notificações push (Node.js com web-push)
+
+// const webpush = require("web-push");
+
+// const vapidKeys = webpush.generateVAPIDKeys();
+
+// webpush.setVapidDetails(
+//   "mailto:seu-email@gmail.com", // Seu endereço de e-mail
+//   vapidKeys.publicKey,
+//   vapidKeys.privateKey
+// );
+
+// const pushSubscription = {
+//   endpoint: "URL_DA_INSCRICAO_DO_CLIENTE",
+//   keys: {
+//     auth: "CHAVE_DE_AUTENTICACAO",
+//     p256dh: "CHAVE_P256DH",
+//   },
+// };
+
+// const payload = JSON.stringify({
+//   title: "Título da Notificação",
+//   body: "Corpo da Notificação",
+// });
+
+// webpush
+//   .sendNotification(pushSubscription, payload)
+//   .then(() => console.log("Notificação enviada com sucesso"))
+//   .catch((error) => console.error("Erro ao enviar notificação:", error));
