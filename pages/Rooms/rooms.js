@@ -138,9 +138,9 @@ button.addEventListener("click", () => {
 
 function randomNotification() {
   const randomItem = Math.floor(Math.random());
-  const notifTitle = "tirulo";
-  const notifBody = `teste`;
-  const notifImg = "../src/logo.png";
+  const notifTitle = "Título";
+  const notifBody = `Mensagem da notificação`;
+  const notifImg = "../../src/logo.png";
   const options = {
     body: notifBody,
     icon: notifImg,
