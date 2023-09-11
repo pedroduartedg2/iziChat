@@ -504,3 +504,13 @@ h5 {
   color: var(--color-2);
   font-weight: 500;
 }
+
+#notifications {
+  width: 100%;
+  display: flex;
+  color: var(--color-2);
+  background-color: var(--color-5);
+  padding: 1rem;
+  border-radius: 1rem;
+  justify-content: center;
+}
