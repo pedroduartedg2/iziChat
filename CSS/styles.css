@@ -40,11 +40,11 @@ main {
   background-color: var(--color-1);
 }
 
-/* #messages-container {
-  position: absolute;
-  bottom: 6rem;
-  width: 100%;
-} */
+#messages-container {
+  height: max-content;
+  min-height: 100%;
+  justify-content: flex-end;
+}
 
 header {
   display: flex;
