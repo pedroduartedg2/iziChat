@@ -1,4 +1,3 @@
-// import { logout, verifyLogin, auth, col, addDocument, db } from "../../firebase-init.js";
 import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
 import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc, where } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
@@ -23,15 +22,6 @@ document.getElementById("send-btn").addEventListener("click", () => {
   }
 });
 
-function getTimestampDataOntem() {
-  const dataOntem = new Date(); // Obtém a data atual
-  dataOntem.setDate(dataOntem.getDate() - 1); // Subtrai um dia
-
-  const timestamp = dataOntem.getTime(); // Obtém o timestamp em milissegundos
-
-  return timestamp;
-}
-
 const sendMessage = async (message) => {
   let idRoom = new URLSearchParams(window.location.search).get("r");
 
@@ -47,14 +37,6 @@ const sendMessage = async (message) => {
         uid: findUser().uid,
       },
     });
-    // .then(() => {
-    //   createMessages().then(() => {
-    //     var objDiv = document.getElementById("messages-container");
-    //     objDiv.scrollTop = objDiv.scrollHeight;
-    //   });
-    //   setTimeout(() => {}, 400);
-    // });
-    // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -63,21 +45,6 @@ const sendMessage = async (message) => {
 const findUser = () => {
   return auth.currentUser;
 };
-
-// const findMessages = async () => {
-//   let idRoom = new URLSearchParams(window.location.search).get("r");
-
-//   const messagesDb = collection(db, "messages");
-//   const q = await query(messagesDb, where("idRoom", "==", idRoom), orderBy("created", "asc"), limit(5000));
-//   const querySnapshot = await getDocs(q);
-
-//   // const querySnapshot = await getDocs(collection(db, "messages"));
-//   let messages = [];
-//   querySnapshot.forEach((doc) => {
-//     messages.push(doc.data());
-//   });
-//   return messages;
-// };
 
 function isHoje(data) {
   const dataAtual = new Date(); // Obtém a data atual
@@ -168,8 +135,6 @@ const formatDate = (timestamp) => {
 };
 
 const createMessages = async (messages) => {
-  // console.log("messages:::::", messages);
-  // let messages = await findMessages();
   let allMessages = "";
   messages.forEach((message) => {
     let messageBoxOthers = "";

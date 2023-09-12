@@ -43,19 +43,6 @@ const findUser = () => {
   return auth.currentUser;
 };
 
-// const findMessages = async () => {
-//   const roomsDb = collection(db, "rooms");
-//   const q = await query(roomsDb, orderBy("created", "asc"), limit(5000));
-//   const querySnapshot = await getDocs(q);
-
-//   // const querySnapshot = await getDocs(collection(db, "messages"));
-//   let rooms = [];
-//   querySnapshot.forEach((doc) => {
-//     rooms.push(doc.data());
-//   });
-//   return rooms;
-// };
-
 const createRooms = async (rooms) => {
   let myRooms = "";
   let allRooms = "";
@@ -82,7 +69,6 @@ const createRooms = async (rooms) => {
 };
 
 const start = async () => {
-  //   document.getElementById("boxLoader").style.display = "flex";
   const roomsDb = collection(db, "rooms");
   const q = await query(roomsDb, orderBy("created", "asc"), limit(5000));
 
