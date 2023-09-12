@@ -51,7 +51,7 @@ const createRooms = async (rooms) => {
     if (room.user.uid == findUser().uid) {
       HTML = `
         <a id="${room.id}" class="room-card" href="../Home/home.html?r=${room.id}">
-          <h5>${room.name}</h5>
+          <h5 class="room-title">${room.name}</h5>
           <div class="room-box-img">
           <p>Você</p>
           <img class="room-img-creator" src="${room.user.photoURL}"></img>
@@ -61,7 +61,7 @@ const createRooms = async (rooms) => {
     } else {
       HTML = `
           <a id="${room.id}" class="room-card" href="../Home/home.html?r=${room.id}">
-          <h5>${room.name}</h5>
+          <h5 class="room-title">${room.name}</h5>
           <div class="room-box-img">
             <p>${room.user.name.split(" ") ? room.user.name.split(" ")[0] : room.user.name}</p>
             <img class="room-img-creator" src="${room.user.photoURL}"></img>

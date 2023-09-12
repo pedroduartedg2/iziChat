@@ -437,6 +437,7 @@ h2 {
   background-color: var(--color-5);
   padding: 1.2rem 1rem;
   border-radius: 0.8rem;
+  gap: 1rem;
 }
 
 #my-rooms-container .room-card {
@@ -529,4 +530,9 @@ h5 {
 #room-box-pic {
   min-width: 5rem;
   justify-content: end;
+}
+
+.room-title {
+  overflow: hidden;
+  word-wrap: break-word;
 }
