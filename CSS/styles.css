@@ -519,7 +519,8 @@ h5 {
 }
 
 #room-box-name {
-  width: 11rem;
+  width: 100%;
+  min-width: 2rem;
   display: flex;
   justify-content: center;
   flex-grow: 2;
