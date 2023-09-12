@@ -374,7 +374,7 @@ button:hover {
   cursor: pointer;
 }
 
-.room-delete-modal {
+.room-delete-modal, #logout-icon {
   color: var(--color-1);
   padding: 1rem;
   border-radius: 200px;
@@ -396,7 +396,7 @@ button:hover {
   background-color: transparent;
 }
 
-#delete-room-btn-modal {
+#delete-room-btn-modal, #logout-btn-modal {
   background-color: var(--color-1);
   padding: 1rem 2rem;
   color: var(--color-6);
