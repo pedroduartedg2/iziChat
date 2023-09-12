@@ -1,14 +1,7 @@
 import { db, verifyLogin, auth, logout } from "../../firebase.js";
-import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc, where } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
-
-document.getElementById("logout-btn-modal").addEventListener("click", () => {
-  document.getElementById("boxLoader").style.display = "flex";
-  logout().then(() => {
-    document.getElementById("boxLoader").style.display = "none";
-  });
-});
 
 document.getElementById("send-btn").addEventListener("click", () => {
   let inputMessage = document.getElementById("input-message");
@@ -26,7 +19,7 @@ const sendMessage = async (message) => {
   let idRoom = new URLSearchParams(window.location.search).get("r");
 
   try {
-    const docRef = await addDoc(collection(db, "messages"), {
+    await addDoc(collection(db, "messages"), {
       message: message,
       created: new Date(),
       idRoom: idRoom,
@@ -207,6 +200,12 @@ const fillNameRoom = async () => {
       if (doc.id == idRoom) {
         console.log(doc.data().name);
         document.getElementById("room-name").innerHTML = doc.data().name;
+        console.log(doc.data());
+        if (findUser().uid != doc.data().user.uid) {
+          document.getElementById("room-delete").remove();
+        } else {
+          document.getElementById("room-delete").style.display = "flex";
+        }
       }
     });
   });
@@ -288,7 +287,7 @@ start();
 
 // Modal
 
-const openModalBtn = document.getElementById("logout-btn");
+const openModalBtn = document.getElementById("room-delete");
 const modal = document.getElementById("myModal");
 const cancelBtn = document.getElementById("cancel-btn");
 
@@ -299,6 +298,19 @@ openModalBtn.addEventListener("click", () => {
 cancelBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
+
+const deleteRoom = async () => {
+  let idRoom = new URLSearchParams(window.location.search).get("r");
+
+  await deleteDoc(doc(db, "rooms", idRoom)).then(() => {
+    window.location.href = "/pages/Rooms/rooms.html";
+  });
+};
+document.getElementById("delete-room-btn-modal").addEventListener("click", () => {
+  deleteRoom();
+});
+
+// document.getElementById("room-delete").addEventListener("click", () => deleteRoom());
 
 // const arrayObjetos = [
 //   { chave: "valor1" },

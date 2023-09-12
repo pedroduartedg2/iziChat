@@ -28,7 +28,9 @@
         <div id="room-name"></div>
         <div>
           <img id="profile-pic" src="" alt="" />
-          <i id="logout-btn" class="fa-solid fa-right-from-bracket"></i>
+          <!-- <i id="logout-btn" class="fa-solid fa-right-from-bracket"></i> -->
+          <i id="room-delete" class="fa-solid fa-trash room-delete"></i>
+
         </div>
       </header>
       <main id="messages-container"></main>
@@ -36,12 +38,15 @@
       <div id="myModal" class="modal">
         <div class="modal-content">
           <div>
-            <i id="logout-icon" class="fa-solid fa-right-from-bracket"></i>
-            <h2>Deseja sair?</h2>
+            <!-- <i id="logout-icon" class="fa-solid fa-right-from-bracket"></i> -->
+
+            <i class="fa-solid fa-trash room-delete-modal"></i>
+
+            <h2>Deseja apagar a sala?</h2>
           </div>
           <div id="box-btn-modal">
             <button id="cancel-btn" class="modal-btn">Cancelar</button>
-            <button id="logout-btn-modal" class="modal-btn">Sair</button>
+            <button id="delete-room-btn-modal" class="modal-btn">Apagar</button>
           </div>
         </div>
       </div>
