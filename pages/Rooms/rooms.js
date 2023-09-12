@@ -63,7 +63,7 @@ const createRooms = async (rooms) => {
           <a id="${room.id}" class="room-card" href="../Home/home.html?r=${room.id}">
           <h5>${room.name}</h5>
           <div class="room-box-img">
-            <p>${room.user.name.split(" ")[0]}</p>
+            <p>${room.user.name.split(" ") ? room.user.name.split(" ")[0] : room.user.name}</p>
             <img class="room-img-creator" src="${room.user.photoURL}"></img>
           </div>
         </a>`;
