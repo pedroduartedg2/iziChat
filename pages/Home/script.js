@@ -1,4 +1,4 @@
-import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
+import { db, verifyLogin, auth, logout } from "../../firebase.js";
 import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc, where } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
@@ -175,10 +175,6 @@ document.addEventListener(
   false
 );
 
-const rollEnd = () => {
-  window.scrollTo(0, document.body.scrollHeight);
-};
-
 const start = async () => {
   let idRoom = new URLSearchParams(window.location.search).get("r");
 
@@ -215,6 +211,7 @@ const fillNameRoom = async () => {
     });
   });
 };
+
 fillNameRoom();
 
 // Função para verificar a posição de rolagem

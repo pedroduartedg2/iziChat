@@ -1,5 +1,4 @@
-// import { logout, verifyLogin, auth, col, addDocument, db } from "../../firebase-init.js";
-import { db, verifyLogin, auth, logout } from "../../firebase-init.js";
+import { db, verifyLogin, auth, logout } from "../../firebase.js";
 import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 verifyLogin();
@@ -44,6 +43,7 @@ const findUser = () => {
 };
 
 const createRooms = async (rooms) => {
+  console.log(rooms);
   let myRooms = "";
   let allRooms = "";
   let HTML = "";
@@ -51,13 +51,21 @@ const createRooms = async (rooms) => {
     if (room.user.uid == findUser().uid) {
       HTML = `
         <a id="${room.id}" class="room-card" href="../Home/home.html?r=${room.id}">
-                <h5>${room.name}</h5>
-        </a>`;
+          <h5>${room.name}</h5>
+          <div class="room-box-img">
+          <p>Você</p>
+          <img class="room-img-creator" src="${room.user.photoURL}"></img>
+        </div>
+          </a>`;
       myRooms += HTML;
     } else {
       HTML = `
-        <a class="room-card" href="../Home/home.html?r=${room.id}">
-                <h5>${room.name}</h5>
+          <a id="${room.id}" class="room-card" href="../Home/home.html?r=${room.id}">
+          <h5>${room.name}</h5>
+          <div class="room-box-img">
+            <p>${room.user.name.split(" ")[0]}</p>
+            <img class="room-img-creator" src="${room.user.photoURL}"></img>
+          </div>
         </a>`;
       allRooms += HTML;
     }

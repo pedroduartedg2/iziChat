@@ -16,10 +16,10 @@ const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
+
 export const signInWitchGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result);
       const name = result.user.displayName;
       const email = result.user.email;
       const profilePic = result.user.photoURL;
@@ -37,7 +37,6 @@ export const signInWitchGoogle = () => {
 
 export const verifyLogin = () => {
   getAuth().onAuthStateChanged((user) => {
-    // console.log("user: ", user);
     if (!user) {
       window.location.href = "/index.html";
     }
@@ -47,10 +46,9 @@ export const verifyLogin = () => {
 export const logout = () => {
   signOut(getAuth())
     .then(() => {
-      // Sign-out successful.
       localStorage.clear();
     })
     .catch((error) => {
-      // An error happened.
+      console.log("Erro: ", error);
     });
 };
