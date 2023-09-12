@@ -374,7 +374,8 @@ button:hover {
   cursor: pointer;
 }
 
-.room-delete-modal, #logout-icon {
+.room-delete-modal,
+#logout-icon {
   color: var(--color-1);
   padding: 1rem;
   border-radius: 200px;
@@ -396,7 +397,8 @@ button:hover {
   background-color: transparent;
 }
 
-#delete-room-btn-modal, #logout-btn-modal {
+#delete-room-btn-modal,
+#logout-btn-modal {
   background-color: var(--color-1);
   padding: 1rem 2rem;
   color: var(--color-6);
@@ -477,6 +479,9 @@ h5 {
 #room-name {
   color: var(--color-2);
   font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .room-img-creator {
@@ -509,4 +514,10 @@ h5 {
 
 #room-delete {
   display: none;
+}
+
+#room-box-name {
+  width: 11rem;
+  display: flex;
+  justify-content: center;
 }
