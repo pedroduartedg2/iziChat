@@ -255,7 +255,7 @@ function verificarRolagem() {
   var quantidadeRolada = minhaDiv.scrollTop;
 
   // Verifique se a quantidade rolada é pelo menos 10% da altura total
-  if (quantidadeRolada / (alturaTotal - alturaVisivel) <= 0.8) {
+  if (quantidadeRolada / (alturaTotal - alturaVisivel) <= 0.9) {
     divFlutuante.style.display = "block";
   } else {
     divFlutuante.style.display = "none";
