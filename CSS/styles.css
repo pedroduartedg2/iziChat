@@ -40,6 +40,12 @@ main {
   background-color: var(--color-1);
 }
 
+#messages-container {
+  position: absolute;
+  bottom: 6rem;
+  width: 100%;
+}
+
 header {
   display: flex;
   align-items: center;
