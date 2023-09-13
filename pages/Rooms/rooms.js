@@ -3,43 +3,43 @@ import { collection, addDoc, getDocs, query, orderBy, limit, onSnapshot, doc } f
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-messaging.js";
 // import { onBackgroundMessage } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-messaging-sw.js";
 
-const messaging = getMessaging(firebaseApp);
-getToken(messaging, { vapidKey: "BADmmifRCwDh11VTjsaEL7Af3B6aNHlH5bhNbB6dag73v2BY4oTzm5ha6cb7HXp06sxCCxzl1Uh-dZZ26Sb63u8" })
-  .then((currentToken) => {
-    if (currentToken) {
-      // Send the token to your server and update the UI if necessary
-      // ...
-      console.log("currentToken: ", currentToken);
-      // document.getElementById("my-rooms-container").insertAdjacentElement("beforeend", currentToken);
-    } else {
-      // Show permission request UI
-      console.log("No registration token available. Request permission to generate one.");
-      // ...
-    }
-  })
-  .catch((err) => {
-    console.log("An error occurred while retrieving token. ", err);
-    // ...
-  });
+// const messaging = getMessaging(firebaseApp);
+// getToken(messaging, { vapidKey: "BADmmifRCwDh11VTjsaEL7Af3B6aNHlH5bhNbB6dag73v2BY4oTzm5ha6cb7HXp06sxCCxzl1Uh-dZZ26Sb63u8" })
+//   .then((currentToken) => {
+//     if (currentToken) {
+//       // Send the token to your server and update the UI if necessary
+//       // ...
+//       console.log("currentToken: ", currentToken);
+//       // document.getElementById("my-rooms-container").insertAdjacentElement("beforeend", currentToken);
+//     } else {
+//       // Show permission request UI
+//       console.log("No registration token available. Request permission to generate one.");
+//       // ...
+//     }
+//   })
+//   .catch((err) => {
+//     console.log("An error occurred while retrieving token. ", err);
+//     // ...
+//   });
 
-function requestPermission() {
-  console.log("Requesting permission...");
-  Notification.requestPermission().then((permission) => {
-    if (permission === "granted") {
-      console.log("Notification permission granted.");
-    } else {
-      Notification.requestPermission();
-      document.getElementById("box-notifications").style.display = "flex";
-    }
-  });
-}
+// function requestPermission() {
+//   console.log("Requesting permission...");
+//   Notification.requestPermission().then((permission) => {
+//     if (permission === "granted") {
+//       console.log("Notification permission granted.");
+//     } else {
+//       Notification.requestPermission();
+//       document.getElementById("box-notifications").style.display = "flex";
+//     }
+//   });
+// }
 
-requestPermission();
+// requestPermission();
 
-onMessage(messaging, (payload) => {
-  console.log("Message received. ", payload);
-  // ...
-});
+// onMessage(messaging, (payload) => {
+//   console.log("Message received. ", payload);
+//   // ...
+// });
 
 verifyLogin();
 
