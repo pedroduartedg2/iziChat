@@ -15,8 +15,7 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
-
+export const firebaseApp = app;
 export const signInWitchGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
