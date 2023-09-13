@@ -539,7 +539,7 @@ h5 {
 
 /* Notificações */
 #box-notifications {
-  display: flex;
+  display: none;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -548,4 +548,5 @@ h5 {
   height: 2rem;
   font-size: 0.9rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
