@@ -28,13 +28,6 @@ function requestPermission() {
     if (permission === "granted") {
       document.getElementById("box-notifications").style.display = "none";
       console.log("Notification permission granted.");
-      const notification = new Notification(
-        "Exemplo notification", {
-          body: "teste",
-          data: {"hello": "world"},
-          icon: "../../src/icon.svg"
-        }
-      )
     } else {
       Notification.requestPermission();
     }
@@ -43,11 +36,20 @@ function requestPermission() {
 
 requestPermission();
 
+const sendNotification = () => {
+  const notification = new Notification("Exemplo notification", {
+    body: "teste",
+    data: { hello: "world" },
+    icon: "../../src/icon.svg",
+  });
+};
+
+document.getElementById("sendNotification").addEventListener("click", () => sendNotification());
+
 onMessage(messaging, (payload) => {
   console.log("Message received. ", payload);
   // ...
 });
-
 
 // const enviaMsg = async () => {
 //   await fetch("https://fcm.googleapis.com//v1/projects/izichat-71bde/messages:send", {
