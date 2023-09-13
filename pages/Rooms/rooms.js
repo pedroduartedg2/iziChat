@@ -10,6 +10,7 @@ getToken(messaging, { vapidKey: "BADmmifRCwDh11VTjsaEL7Af3B6aNHlH5bhNbB6dag73v2B
       // Send the token to your server and update the UI if necessary
       // ...
       console.log("currentToken: ", currentToken);
+      // document.getElementById("my-rooms-container").insertAdjacentElement("beforeend", currentToken);
     } else {
       // Show permission request UI
       console.log("No registration token available. Request permission to generate one.");
@@ -25,16 +26,61 @@ function requestPermission() {
   console.log("Requesting permission...");
   Notification.requestPermission().then((permission) => {
     if (permission === "granted") {
+      document.getElementById("box-notifications").style.display = "none";
       console.log("Notification permission granted.");
+      const notification = new Notification(
+        "Exemplo notification", {
+          body: "teste",
+          data: {"hello": "world"},
+          icon: "../../src/icon.svg"
+        }
+      )
+    } else {
+      Notification.requestPermission();
     }
   });
 }
+
 requestPermission();
 
 onMessage(messaging, (payload) => {
   console.log("Message received. ", payload);
   // ...
 });
+
+
+// const enviaMsg = async () => {
+//   await fetch("https://fcm.googleapis.com//v1/projects/izichat-71bde/messages:send", {
+//     method: "POST",
+//     body: JSON.stringify({
+//       message: {
+//         token: "d2IPrdiDdbgR6YBXWWl_XG:APA91bHo8u10oebqiZmM3rTKPcFm0a0SXtpqtW_C6M0YqlbIWuT2UDEaD6GKp1ulaCLtiSgACixolY8ug7oIbxDIHfqTuAiC2PFltn0WzXqG_e_RwXzgUWVBAvJF62khCcdxbsccF8_w",
+//         notification: {
+//           title: "FCM Message",
+//           body: "This is a message from FCM",
+//         },
+//         webpush: {
+//           headers: {
+//             Urgency: "high",
+//           },
+//           notification: {
+//             body: "This is a message from FCM to web",
+//             requireInteraction: "true",
+//             badge: "/badge-icon.png",
+//           },
+//         },
+//       },
+//     }),
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: "Bearer AAAA_1l64oM:APA91bG-UvblXSuRKVhvHOrANkIrQjsyu7-toihK0nbJk5Ft9PTLKaEKGa0_eAgDoh3kNNmPcZEPk6BWoAflbJX-v_RF-Kk1hP7Wjdy390ZQ_2Ajh7P1qXd7NFMH-fwhpF2lOd11g1dX",
+//     },
+//   }).then((e) => {
+//     console.log("mensagem enviada", e);
+//   });
+// };
+
+// await enviaMsg();
 
 // onBackgroundMessage(messaging, (payload) => {
 //   console.log("[firebase-messaging-sw.js] Received background message ", payload);
@@ -47,6 +93,10 @@ onMessage(messaging, (payload) => {
 
 //   self.registration.showNotification(notificationTitle, notificationOptions);
 // });
+
+document.getElementById("box-notifications").addEventListener("click", () => {
+  requestPermission();
+});
 
 verifyLogin();
 
